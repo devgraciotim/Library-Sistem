@@ -1,0 +1,37 @@
+* {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    padding: 1rem;
+}
+
+.section {
+    border: 2px solid black;
+    border-radius: 1rem;
+    width: 50%;
+    height: 80vh;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.mainContent {
+    gap: 2rem;
+    padding: 3rem;
+}
+
+@media (max-width: 950px) {
+    .mainContent {
+        flex-direction: column;
+    }
+
+    .section {
+        width: 100%;
+    }
+}
+
