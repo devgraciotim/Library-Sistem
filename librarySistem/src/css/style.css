@@ -25,6 +25,35 @@ header {
     padding: 3rem;
 }
 
+#userForm {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+#userForm input {
+    font-size: 1rem;
+    border: 1px black solid;
+    border-radius: 1rem;
+    padding: .3rem;
+    width: 15rem;
+}
+
+#userForm button {
+    font-size: 1rem;
+    padding: .3rem;
+    cursor: pointer;
+    border-radius: .3rem;
+    transition: .5s;
+}
+
+#userForm button:hover {
+    background-color: gray;
+    color: white;
+}
+
 @media (max-width: 950px) {
     .mainContent {
         flex-direction: column;
@@ -35,3 +64,9 @@ header {
     }
 }
 
+@media (max-width: 630px) {
+    #userForm {
+        flex-direction: column;
+        align-items: center;
+    }
+}
