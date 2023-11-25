@@ -1,3 +1,20 @@
+class Library {
+    constructor() {
+        this.collection = [];
+        this.populateCollection();
+    }
+
+    populateCollection() {
+        fetch('https://api-biblioteca-mb6w.onrender.com/acervo')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(entity => {
+                    this.collection.push(entity);
+                });
+            })
+    }
+}
+
 class bibliographicEntity {
     constructor(title, author, publicationYear, code) {
         this.title = title;
@@ -8,14 +25,14 @@ class bibliographicEntity {
         this.borrowedUser = null;
     }
 
-    emprestar(usuario) {
+    emprestar(user) {
         if (this.borrowed === true) {
             console.log('Esta Emprestado');
         }
         else {
             this.borrowed = true;
             console.log('Emprestado');
-            this.borrowedUser = usuario;
+            this.borrowedUser = user;
         }
     }
 
@@ -85,7 +102,6 @@ function createUser(name, registry, birth) {
     registry.value = '';
     birth.value = '';
 }
-
 
 
 
