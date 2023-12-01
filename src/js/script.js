@@ -1,17 +1,40 @@
 class Library {
     constructor() {
+        this.users = [];
         this.collection = [];
         this.populateCollection();
+        this.populateUsers(); 
     }
 
-    populateCollection() {
+    async populateCollection() {
         fetch('https://api-biblioteca-mb6w.onrender.com/acervo')
             .then(response => response.json())
             .then(data => {
-                data.forEach(entity => {
+                data.forEach(el => {
+                    const entity = new bibliographicEntity(
+                        el.titulo, el.autor, el.anoPublicacao, el.codigo
+                    )
                     this.collection.push(entity);
                 });
+                console.log(this.collection);
             })
+    }
+
+    async populateUsers() {
+        try {
+            const response = await fetch('https://api-biblioteca-mb6w.onrender.com/users');
+            const data = await response.json();
+
+            data.forEach(el => {
+                const user = new User(el.nome, el.registroAcademico, el.dataNascimento);
+                this.users.push(user);
+            })
+
+            console.log(users);
+        }
+        catch(error) {
+            console.error(`Error: ${error}`);
+        }
     }
 }
 
@@ -61,53 +84,10 @@ class Magazine extends bibliographicEntity {
     }
 }
 
-const users = [];
-
 class User {
     constructor(name, registry, birth) {
         this.name = name;
         this.registry = registry;
         this.birth = birth;
-
-        this.saveUser();
-    }
-
-    userInfo() {
-        return { name: this.name, registry: this.registry, birth: this.birth };
-    }
-
-    saveUser() {
-        users.push(this.userInfo());
-        localStorage.setItem('usersInfo', JSON.stringify(users));
     }
 }
-
-function validateInputs() {
-    const nameInput = document.getElementById('userForm').querySelector('.name');
-    const registryInput = document.getElementById('userForm').querySelector('.registry');
-    const birthInput = document.getElementById('userForm').querySelector('.birth');
-
-    if (nameInput.value.trim() === '' || registryInput.value.trim() === '' || birthInput.value.trim() === '') {
-        alert('Preencha todos os campos');
-        return;
-    }
-
-    createUser(nameInput, registryInput, birthInput);
-}
-
-function createUser(name, registry, birth) {
-    const newUser = new User(name.value, registry.value, birth.value);
-
-    name.value = '';
-    registry.value = '';
-    birth.value = '';
-}
-
-
-
-
-
-
-
-
-
