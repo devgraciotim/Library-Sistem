@@ -4,3 +4,19 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+#userForm {
+    width: 80%;
+    text-align: center;
+}
+
+#userForm input {
+    margin: .3rem;
+    border: 1px solid black;
+    border-radius: .5rem;
+    padding: .3rem;
+}
+
+#nameInput {
+    width: 95%;
+}

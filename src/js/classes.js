@@ -1,4 +1,6 @@
-class Library {
+import { createTableRow, addTableRow } from './functions.js'
+
+export class Library {
     constructor() {
         this.users = [];
         this.collection = [];
@@ -15,8 +17,6 @@ class Library {
                 const user = new User(el.nome, el.registroAcademico, el.dataNascimento);
                 this.users.push(user);
             })
-
-            console.log(this.users);
         }
         catch(error) {
             console.error(`Error: ${error}`);
@@ -42,8 +42,6 @@ class Library {
                     this.collection.push(entity);
                 }
             });
-
-            console.log(this.collection);
         }
         catch(error) {
             console.error(`Error: ${error}`);
@@ -51,18 +49,35 @@ class Library {
     }
 
     listCollection() {
-        
         this.collection.forEach(entity => {
-            console.log(entity);
+            const tableRow = createTableRow(entity.title, entity.author, entity.publicationYear, entity.code);
+            addTableRow(tableRow);
         })
+
+        document.getElementById('closeCollection').addEventListener('click', () => {
+            const tbody = document.getElementById('tbodyCollection');
+            tbody.innerHTML = '';
+        });
     }
 
     addUser(user) {
-        
+        this.users.push(user);
+    }
+
+    addItem(item) {
+        this.collection.push(item);
+    }
+
+    lendItem(code, registry) {
+        this.collection.find();
+    }
+
+    returnItem(code) {
+        this.collection.find();
     }
 }
 
-class User {
+export class User {
     constructor(name, registry, birth) {
         this.name = name;
         this.registry = registry;
@@ -70,7 +85,7 @@ class User {
     }
 }
 
-class bibliographicEntity {
+export class bibliographicEntity {
     constructor(title, author, publicationYear, code, entityType) {
         this.title = title;
         this.author = author;
@@ -81,7 +96,7 @@ class bibliographicEntity {
         this.borrowedUser = null;
     }
 
-    emprestar(user) {
+    lend(user) {
         if (this.borrowed === true) {
             console.log('Esta Emprestado');
         }
@@ -92,7 +107,7 @@ class bibliographicEntity {
         }
     }
 
-    devolver() {
+    return() {
         if (this.borrowed === true) {
             this.borrowed = false;
             this.borrowedUser = null;
@@ -104,18 +119,16 @@ class bibliographicEntity {
     }
 }
 
-class Book extends bibliographicEntity {
+export class Book extends bibliographicEntity {
     constructor(title, author, publicationYear, code, entityType, genre) {
         super(title, author, publicationYear, code, entityType);
         this.genre = genre;
     }
 }
 
-class Magazine extends bibliographicEntity {
+export class Magazine extends bibliographicEntity {
     constructor(title, author, publicationYear, code, entityType, edition) {
         super(title, author, publicationYear, code, entityType);
         this.edition = edition;
     }
 }
-
-var lib = new Library;
