@@ -1,22 +1,43 @@
 * {
-    padding: 0;
-    border: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 #userForm {
-    width: 80%;
-    text-align: center;
+  width: 80%;
+  text-align: center;
 }
 
 #userForm input {
-    margin: .3rem;
-    border: 1px solid black;
-    border-radius: .5rem;
-    padding: .3rem;
+  margin: 0.3rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding: 0.3rem;
 }
 
 #nameInput {
-    width: 95%;
+  width: 95%;
+}
+
+#itemForm input {
+  margin: 0.3rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+}
+
+#lendForm input {
+  margin: 0.3rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+    gap: 1rem;
 }
